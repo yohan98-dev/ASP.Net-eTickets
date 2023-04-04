@@ -6,11 +6,16 @@ namespace eTickets.Models
     {
         [Key]
         public int ActorId { get; set; }
+
+        [Display(Name = "Profile Pic")]
         public string ProfilePicURL { get; set; }
         [Required]
-        public string FullName { get; set;}
 
-        public string Bio { get; set;}
+		[Display(Name = "Full Name")]
+		public string FullName { get; set;}
+
+		[Display(Name = "Biography")]
+		public string Bio { get; set;}
 
         //Relationships
 
