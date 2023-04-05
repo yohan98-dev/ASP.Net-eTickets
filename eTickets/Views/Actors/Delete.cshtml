@@ -1,0 +1,61 @@
+﻿@model Actor
+
+@{
+	ViewData["Title"] = "Delete actor";
+}
+
+<div class="row text-black">
+	<div class="col-md-8 offset-2">
+		<p>
+			<h1>Delete Conformation for @Model.FullName</h1>
+		</p>
+
+		<div class="row">
+			<div class="col-md-8 offset-2">
+
+
+				<div class="mb-3 text-center">
+					<img class="border-info rounded-circle" style="max-width: 150px" id="ProfilePicPreview" />
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ProfilePicURL" class="form-label">Profile Picture URL</label>
+					<input type="text" asp-for="ProfilePicURL" class="form-control" readonly>
+					<span asp-validation-for="ProfilePicURL" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="FullName" class="form-label"></label>
+					<input type="text" asp-for="FullName" class="form-control" readonly />
+					<span asp-validation-for="FullName" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Bio" class="form-label"></label>
+					<input type="text" asp-for="Bio" class="form-control" readonly />
+					<span asp-validation-for="Bio" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<form method="post" asp-action="Delete">
+						<input type="hidden" asp-for="ActorId"/>
+						<input type="submit" value="Confirm" class="btn btn-danger float-end"></input>
+					</form>
+					<a class="btn btn-outline-secondary" asp-action="Index"> Show All</a>
+					
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+			var output = document.getElementById('ProfilePicPreview');
+			output.src = $("#ProfilePicURL").val();
+		})
+	</script>
+}
