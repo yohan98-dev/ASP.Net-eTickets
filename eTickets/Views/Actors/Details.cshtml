@@ -1,47 +1,46 @@
 ﻿@model Actor
 
 @{
-	ViewData["Title"] = "Add new Actor";
+	ViewData["Title"] = "info";
 }
 
 <div class="row text-black">
 	<div class="col-md-8 offset-2">
 		<p>
-			<h1>Add a new actor</h1>
+			<h1>Details for @Model.FullName</h1>
 		</p>
 
 		<div class="row">
 			<div class="col-md-8 offset-2">
-				<form asp-action="Create">
-					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 				
+
 					<div class="mb-3 text-center">
 						<img class="border-info rounded-circle" style="max-width: 150px" id="ProfilePicPreview" />
 					</div>
 
 					<div class="mb-3">
 						<label asp-for="ProfilePicURL" class="form-label">Profile Picture URL</label>
-						<input type="text" asp-for="ProfilePicURL" class="form-control">
+						<input type="text" asp-for="ProfilePicURL" class="form-control" readonly>
 						<span asp-validation-for="ProfilePicURL" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
 						<label asp-for="FullName" class="form-label"></label>
-						<input type="text" asp-for="FullName" class="form-control" />
+						<input type="text" asp-for="FullName" class="form-control" readonly />
 						<span asp-validation-for="FullName" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
 						<label asp-for="Bio" class="form-label"></label>
-						<input type="text" asp-for="Bio" class="form-control" />
+						<input type="text" asp-for="Bio" class="form-control" readonly/>
 						<span asp-validation-for="Bio" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
-						<input type="submit" value="Create" class="btn btn-outline-success float-end" />
+						<a class="btn btn-outline-success float-end" asp-action="Edit" asp-route-id="@Model.ActorId" >Edit</a>
 						<a class="btn btn-outline-secondary" asp-action="Index"> Show All</a>
 					</div>
-				</form>
+				
 			</div>
 		</div>
 	</div>
@@ -50,14 +49,9 @@
 
 @section Scripts {
 	<script>
-		$(document).ready(function(){
+		$(document).ready(function () {
 			var output = document.getElementById('ProfilePicPreview');
 			output.src = $("#ProfilePicURL").val();
-		} )
-
-		$("#ProfilePicURL").on("change" , function() {
-			var output = document.getElementById('ProfilePicPreview');
-			output.src = $(this).val();
 		})
 	</script>
 }

@@ -17,7 +17,7 @@ namespace eTickets.Controllers
 
         public async Task< IActionResult > Index()
         {
-            var data = await _service.GetAll();
+            var data = await _service.GetAllAsync();
             return View(data);
         }
 
@@ -35,8 +35,16 @@ namespace eTickets.Controllers
             {
                 return View(actor);
             }
-            _service.Add(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+
+            if (actorDetails == null) return View("Enpty");
+            return View(actorDetails);
         }
     }
 }
